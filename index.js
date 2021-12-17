@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const authRouter = require('./authRouter.js')
@@ -11,7 +12,7 @@ app.use('/auth', authRouter)
 
 const start = async() => {
     try {
-        await mongoose.connect(`mongodb+srv://dbUser:dbUser@cluster0.mfp5t.mongodb.net/auth_roles?retryWrites=true&w=majority`)
+        await mongoose.connect(process.env.MONGO_URI)
         app.listen(PORT, () => console.log(`server started on port ${PORT}`))
 
     } catch (e) {

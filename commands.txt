@@ -1,2 +1,15 @@
 npm init
 npm i express mongoose nodemon
+
+
+const userRole = new Role()
+const adminRole = new Role({value: "ADMIN"})
+
+await userRole.save()
+await adminRole.save()
+
+https://www.npmjs.com/package/bcryptjs
+
+npm install bcryptjs
+npm i express-validator
+npm i dotenv
