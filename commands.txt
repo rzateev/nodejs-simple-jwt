@@ -13,3 +13,6 @@ https://www.npmjs.com/package/bcryptjs
 npm install bcryptjs
 npm i express-validator
 npm i dotenv
+
+https://www.npmjs.com/package/jsonwebtoken
+npm install jsonwebtoken
