@@ -16,3 +16,8 @@ npm i dotenv
 
 https://www.npmjs.com/package/jsonwebtoken
 npm install jsonwebtoken
+
+API
+http://localhost:5000/auth/registration
+http://localhost:5000/auth/login
+http://localhost:5000/auth/users
