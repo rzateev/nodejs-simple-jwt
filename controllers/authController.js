@@ -1,5 +1,5 @@
-const User = require('./models/User')
-const Role = require('./models/Role')
+const User = require('../models/User')
+const Role = require('../models/Role')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const {validationResult} = require('express-validator')
@@ -16,7 +16,7 @@ class authController {
         try {
             const errors =validationResult(req)
             if (!errors.isEmpty()) {
-                return res.status(400).json({message: "Ошибка при регистраци", errors})
+                return res.status(400).json({message: "Error in registration process", errors})
             }
             const {username, password} = req.body
             const candidate = await User.findOne({username})
@@ -27,7 +27,7 @@ class authController {
             const useRole = await Role.findOne({value: "USER"})
             const user = new User({username, password: hashPassword, roles:[useRole.value]})
             await user.save()
-            return res.json({message: "User registred"})
+            return res.json({message: "User registered"})
         } catch(e) {
             console.log(e)
             res.status(400).json({message: 'Registration error'})
@@ -39,11 +39,11 @@ class authController {
             const {username, password} = req.body
             const user = await User.findOne({username})
             if (!user) {
-                res.status(400).json({message: `Пользватель ${username} не существует`})
+                res.status(400).json({message: `User ${username} doesnt exist `})
             }
             const validPassword = bcrypt.compareSync(password, user.password)
             if (!validPassword) {
-                res.status(400).json({message: `Введен неверный пароль`})
+                res.status(400).json({message: `Wrong pass`})
             }
             const token = generateAccessToken(user._id, user.role)
             return res.json({token})

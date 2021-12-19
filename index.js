@@ -1,9 +1,9 @@
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
-const authRouter = require('./authRouter.js')
+const authRouter = require('./routes/authRouter.js')
 const PORT = process.env.NODE_PORT || 5000
-
+const taskSheduler = require('./core.js')
 
 const app = express()
 
@@ -19,5 +19,12 @@ const start = async() => {
         console.log(e)
     }
 }
+// const startFetchProcess = async() => {
+//     const tickers = []
+//     await TwelveDataProvider.fetchStocks('AAPL,TRP:TSX', "1min", process.env.TWDT_API_KEY)
+// }
+
+
 
 start()
+taskSheduler.startFetchProcess()
