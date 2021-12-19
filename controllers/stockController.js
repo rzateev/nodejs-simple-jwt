@@ -1,7 +1,7 @@
 const Stock = require('../models/Stock')
 const User = require('../models/User')
 
-class stockController {
+const stockController = {
     async insertStockHistory(ticker, datetime, open, high, low, close, volume) {
         try {
             //console.log(datetime, open, high, low, close, volume)
@@ -17,7 +17,7 @@ class stockController {
 
             return false
         }
-    }
+    },
 
     async getAllTickers() {
         const listOfTickers = new Set()
@@ -35,7 +35,7 @@ class stockController {
             console.log(e)
             return listOfTickers
         }
-    }
+    },
 
     async getStocks(req, res) {
         try {
@@ -49,4 +49,4 @@ class stockController {
     }
 }
 
-module.exports = new stockController()
+module.exports = stockController

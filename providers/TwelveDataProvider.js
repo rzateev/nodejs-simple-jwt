@@ -20,15 +20,11 @@ class TwelveDataProvider {
                     }
                 })
                 //console.log(response.data);
-
-
             })
             .catch(error => {
                 console.log(error);
             });
     }
-
-
 }
 
 module.exports = new TwelveDataProvider()

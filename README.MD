@@ -1,12 +1,16 @@
+#Overview
+- Fetch stocks from API and save it in MONGO DB
+- Tricks are store in USER table individually
+- Telegram integration
+- React front
+
+#How to start
+
+npm start
+
+#Install
 npm init
 npm i express mongoose nodemon
-
-
-const userRole = new Role()
-const adminRole = new Role({value: "ADMIN"})
-
-await userRole.save()
-await adminRole.save()
 
 https://www.npmjs.com/package/bcryptjs
 

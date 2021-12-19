@@ -16,12 +16,12 @@ class authController {
         try {
             const errors =validationResult(req)
             if (!errors.isEmpty()) {
-                return res.status(400).json({message: "Error in registration process", errors})
+                return res.status(401).json({message: "Error in registration process", errors})
             }
             const {username, password} = req.body
             const candidate = await User.findOne({username})
             if (candidate) {
-                return res.status(400).json({message: "User already exists"})
+                return res.status(409).json({message: "User already exists"})
             }
             const hashPassword = bcrypt.hashSync(password, 7);
             const useRole = await Role.findOne({value: "USER"})
@@ -30,7 +30,7 @@ class authController {
             return res.json({message: "User registered"})
         } catch(e) {
             console.log(e)
-            res.status(400).json({message: 'Registration error'})
+            res.status(401).json({message: 'Registration error'})
         }
     }
 
@@ -39,11 +39,11 @@ class authController {
             const {username, password} = req.body
             const user = await User.findOne({username})
             if (!user) {
-                res.status(400).json({message: `User ${username} doesnt exist `})
+                res.status(409).json({message: `User ${username} doesnt exist `})
             }
             const validPassword = bcrypt.compareSync(password, user.password)
             if (!validPassword) {
-                res.status(400).json({message: `Wrong pass`})
+                res.status(401).json({message: `Wrong pass`})
             }
             const token = generateAccessToken(user._id, user.role)
             return res.json({token})
@@ -51,7 +51,7 @@ class authController {
 
         } catch(e) {
             console.log(e)
-            res.status(400).json({message: 'Login error'})
+            res.status(401).json({message: 'Login error'})
         }
     }
 
