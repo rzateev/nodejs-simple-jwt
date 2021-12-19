@@ -3,7 +3,7 @@ const stockController = require('../controllers/stockController')
 
 
 
-class TwelveDataProvider {
+const TwelveDataProvider = {
     async fetchStocks(tickers, interval, apiKey) {
         axios.get(`https://api.twelvedata.com/time_series?symbol=${tickers}&interval=${interval}&apikey=${apiKey}`)
             .then(response => {
@@ -27,6 +27,6 @@ class TwelveDataProvider {
     }
 }
 
-module.exports = new TwelveDataProvider()
+module.exports = TwelveDataProvider
 
 
