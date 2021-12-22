@@ -65,6 +65,12 @@ class authController {
 
         }
     }
+
+    async check(req, res, next) {
+        //console.log(req)
+        const token = generateAccessToken(req.user.id, req.user.role)
+        return res.json(token)
+    }
 }
 
 module.exports = new authController()
